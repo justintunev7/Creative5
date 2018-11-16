@@ -5,7 +5,8 @@ var io = require('socket.io').listen(server);
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/asteroids', { useNewUrlParser: true });
-var scores = require('./models/scores');
+var Schema = require('./models/scores');
+var Scores = mongoose.model('scores');
 var db = mongoose.connection; //Saves the connection as a variable to use
 db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
 db.once('open', function() { //Lets us know when we're connected
@@ -21,20 +22,23 @@ var asteroid = {
   x: Math.floor(Math.random() * 700) + 50,
   y: Math.floor(Math.random() * 500) + 50
 };
+
 var scores = {
   blue: 0,
   red: 0
 };
 
-var Schema = mongoose.Schema;
-var scoreSchema = new Schema({
+//var Schema = mongoose.Schema;
+/*
+var scoreSchema = new Scores ({
   blue: { type: Number, default: 0 },
   red: { type: Number, default: 0 }
 });
+*/
 
-var teamScores = mongoose.model("Score", scoreSchema);
+//var teamScores = mongoose.model("Score", scoreSchema);
 
-var wins = new teamScores({
+var wins = new Scores ({
   blue: 0,
   red: 0
 });

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var TeamScore = mongoose.model('Score');
+var TeamScore = mongoose.model('scores');
 
 router.get('/scores', function(req, res, next) {
   TeamScore.find(function(err, comments){
@@ -18,6 +18,7 @@ router.post('/scores', function(req, res, next) {
   });
 });
 
+/*
 router.param('score', function(req, res, next, id) {
   var query = TeamScore.findById(id);
   query.exec(function (err, comment){
@@ -38,4 +39,5 @@ router.put('/scores/:score/increase', function(req, res, next) {
     res.json(comment);
   });
 });
+*/
 module.exports = router;
