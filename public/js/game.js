@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 800,
+    width: 1200,
     height: 600,
     physics: {
         default: 'arcade',
@@ -75,20 +75,20 @@ function create() {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.click = game.input.activePointer;
 
-    this.blueScoreText = this.add.text(16, 42, '', { fontSize: '32px', fill: '#0000FF' });
-    this.redScoreText = this.add.text(480, 42, '', { fontSize: '32px', fill: '#FF0000' });
+    this.blueScoreText = this.add.text(48, 42, '', { fontSize: '28px', fill: '#0000FF' });
+    this.redScoreText = this.add.text(700, 42, '', { fontSize: '28px', fill: '#FF0000' });
 
     this.socket.on('scoreUpdate', function(scores) {
-        self.blueScoreText.setText('Blue: ' + scores.blue);
-        self.redScoreText.setText('Red: ' + scores.red);
+        self.blueScoreText.setText('Current Score: ' + scores.blue);
+        self.redScoreText.setText('Current Score: ' + scores.red);
     });
     
-    this.blueWinsText = this.add.text(16, 8, '', { fontSize: '42px', fill: '#0000FF' });
-    this.redWinsText = this.add.text(480, 8, '', { fontSize: '42px', fill: '#FF0000' });
+    this.blueWinsText = this.add.text(48, 8, '', { fontSize: '42px', fill: '#0000FF' });
+    this.redWinsText = this.add.text(700, 8, '', { fontSize: '42px', fill: '#FF0000' });
 
     this.socket.on('winUpdate', function(wins) {
-        self.blueWinsText.setText('Blue: ' + wins.blue);
-        self.redWinsText.setText('Red: ' + wins.red);
+        self.blueWinsText.setText('Blue Wins: ' + wins.blue);
+        self.redWinsText.setText('Red Wins: ' + wins.red);
     });
 
     this.socket.on('starLocation', function(starLocation) {
