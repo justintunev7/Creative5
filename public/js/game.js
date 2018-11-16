@@ -75,12 +75,20 @@ function create() {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.click = game.input.activePointer;
 
-    this.blueScoreText = this.add.text(16, 16, '', { fontSize: '32px', fill: '#0000FF' });
-    this.redScoreText = this.add.text(584, 16, '', { fontSize: '32px', fill: '#FF0000' });
+    this.blueScoreText = this.add.text(16, 42, '', { fontSize: '32px', fill: '#0000FF' });
+    this.redScoreText = this.add.text(480, 42, '', { fontSize: '32px', fill: '#FF0000' });
 
     this.socket.on('scoreUpdate', function(scores) {
         self.blueScoreText.setText('Blue: ' + scores.blue);
         self.redScoreText.setText('Red: ' + scores.red);
+    });
+    
+    this.blueWinsText = this.add.text(16, 8, '', { fontSize: '42px', fill: '#0000FF' });
+    this.redWinsText = this.add.text(480, 8, '', { fontSize: '42px', fill: '#FF0000' });
+
+    this.socket.on('winUpdate', function(wins) {
+        self.blueWinsText.setText('Blue: ' + wins.blue);
+        self.redWinsText.setText('Red: ' + wins.red);
     });
 
     this.socket.on('starLocation', function(starLocation) {
